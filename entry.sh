@@ -16,7 +16,7 @@ case "$command" in
         ;;
     test)
         section=${2:-}
-        name=${3:-}
+        name=$(hammer query '{{.Name}}')
         case "$section" in
             install)
                 yum install -y out/${name}*.rpm
@@ -24,7 +24,7 @@ case "$command" in
                 ;;
             *)
                 echo "usage: $0 test SECTION"
-                echo 'try "install" or "upgrade"'
+                echo 'try "install"'
                 exit 1
                 ;;
         esac
